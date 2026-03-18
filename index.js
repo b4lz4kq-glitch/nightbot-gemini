@@ -11,9 +11,9 @@ app.get('/ask', async (req, res) => {
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: question }] }]
-        })
+     body: JSON.stringify({
+  contents: [{ parts: [{ text: `Answer in under 300 characters, be concise: ${question}` }] }]
+})
       }
     );
 
