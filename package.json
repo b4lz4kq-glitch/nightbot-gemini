@@ -1,0 +1,52 @@
+{
+  "name": "nightbot-gemini",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": { "express": "^4.18.0" }
+}
+```
+
+13. Click **"Commit new file"** again
+
+---
+
+## Part 3 — Deploy it on Render (free server)
+
+Render is where your bot's brain actually lives and runs 24/7.
+
+1. Go to **render.com** and sign up — click **"Sign in with GitHub"** (easiest)
+2. Click **"New +"** → **"Web Service"**
+3. Click **"Connect"** next to your `nightbot-gemini` repo
+4. Fill in the settings:
+   - **Name:** anything you want
+   - **Runtime:** `Node`
+   - **Build command:** `npm install`
+   - **Start command:** `node index.js`
+5. Scroll down to **"Environment Variables"** — click **"Add Environment Variable"**
+   - Key: `GEMINI_API_KEY`
+   - Value: paste the API key you saved in Notepad
+6. Click **"Create Web Service"**
+7. Wait 2–3 minutes while it builds. When it says **"Live"** ✅, copy the URL at the top — it looks like `https://nightbot-gemini-xxxx.onrender.com`
+
+---
+
+## Part 4 — Add the command in Nightbot
+
+1. Go to **nightbot.tv** and log in with your Twitch account
+2. Click **"Commands"** on the left → **"Custom"**
+3. Click **"Add Command"**
+4. Fill it in:
+   - **Command:** `!ask`
+   - **Message:** paste this (replace the URL with YOUR Render URL):
+```
+   $(urlfetch https://nightbot-gemini-xxxx.onrender.com/ask?q=$(querystring))
+```
+5. Click **"Submit"**
+
+---
+
+## Part 5 — Test it in your stream chat!
+
+Type this in your Twitch chat:
+```
+!ask what is the meaning of life?
