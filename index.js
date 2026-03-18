@@ -3,7 +3,7 @@ const app = express();
 
 app.get('/ask', async (req, res) => {
   const question = req.query.q;
-  if (!question) return res.send('Usage: !ask your question');
+  if (!question) return res.send('Usage: !google your question');
 
   const response = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
