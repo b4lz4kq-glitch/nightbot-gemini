@@ -7,7 +7,7 @@ app.get('/ask', async (req, res) => {
 
   try {
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.AIzaSyD8oZTn-zbZEFgyddynSykqc4QVaWpaZ3c}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
