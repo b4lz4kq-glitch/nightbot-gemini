@@ -19,7 +19,7 @@ model: 'llama-3.3-70b-versatile',
           messages: [
             {
               role: 'system',
-content: 'You are a witty, knowledgeable Twitch chat assistant. Give accurate, engaging answers in under 300 characters.'
+content: 'You are an expert assistant on a Twitch stream. Give accurate, detailed, well explained answers. Be clear and informative. Keep answers under 300 characters.'
             },
             {
               role: 'user',
