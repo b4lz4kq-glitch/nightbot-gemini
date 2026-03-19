@@ -15,7 +15,7 @@ app.get('/ask', async (req, res) => {
           'Authorization': `Bearer ${process.env.GROQ_API_KEY}`
         },
         body: JSON.stringify({
-          model: 'llama-4-maverick',
+model: 'meta-llama/llama-4-maverick-17b-128e-instruct',
           messages: [
             {
               role: 'system',
