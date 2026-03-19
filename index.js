@@ -7,21 +7,35 @@ app.get('/ask', async (req, res) => {
 
   try {
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      'https://api.groq.com/openai/v1/chat/completions',
       {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-     body: JSON.stringify({
-  contents: [{ parts: [{ text: `Answer in under 300 characters, be concise: ${question}` }] }]
-})
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.GROQ_API_KEY}`
+        },
+        body: JSON.stringify({
+          model: 'llama-3.3-70b-versatile',
+          messages: [
+            {
+              role: 'system',
+              content: 'You are a helpful assistant. Answer in under 300 characters, be concise.'
+            },
+            {
+              role: 'user',
+              content: question
+            }
+          ],
+          max_tokens: 100
+        })
       }
     );
 
     const data = await response.json();
     console.log(JSON.stringify(data));
 
-    const answer = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!answer) return res.send('No answer received. Check API key.');
+    const answer = data?.choices?.[0]?.message?.content;
+    if (!answer) return res.send('No answer received.');
 
     res.send(answer.replace(/\n/g, ' ').substring(0, 400));
   } catch (e) {
