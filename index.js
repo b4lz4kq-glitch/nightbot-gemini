@@ -19,7 +19,7 @@ app.get('/ask', async (req, res) => {
           messages: [
             {
               role: 'system',
-              content: 'You are a helpful assistant. Answer in under 300 characters, be concise.'
+content: 'You are a witty, knowledgeable Twitch chat assistant. Give accurate, engaging answers in under 300 characters.'
             },
             {
               role: 'user',
